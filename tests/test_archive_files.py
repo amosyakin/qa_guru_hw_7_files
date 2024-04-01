@@ -19,7 +19,6 @@ def test_xlsx():
         with zip_file.open('file_xlsx.xlsx', 'r') as xlsx_file:
             workbook = load_workbook(xlsx_file)
             sheet = workbook.active
-            print(sheet.max_row)
             assert sheet.max_row == 10
             assert sheet.cell(row=8, column=5).value == 'Great Britain'
 

@@ -16,10 +16,10 @@ def archive_files():
     if not os.path.exists(RESOURCE_DIR):
         os.mkdir(RESOURCE_DIR)
 
-    with ZipFile(archive, "a") as zip_file:
-        zip_file.write(os.path.join(TMP_DIR, 'file_csv.csv'), arcname='file_csv.csv')
-        zip_file.write(os.path.join(TMP_DIR, 'file_pdf.pdf'), arcname='file_pdf.pdf')
-        zip_file.write(os.path.join(TMP_DIR, 'file_xlsx.xlsx'), arcname='file_xlsx.xlsx')
+    with ZipFile(archive, "w") as zip_file:
+        for file in os.listdir(TMP_DIR):
+            add_file = os.path.join(TMP_DIR, file)
+            zip_file.write(add_file, os.path.basename(add_file))
 
     yield
 
